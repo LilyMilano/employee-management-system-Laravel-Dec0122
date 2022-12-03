@@ -1,3 +1,6 @@
+<!-- Creación y Edición:(cuerpo de form a usar en include) -->
+<h1>{{ $modo }} Empleado</h1>
+
 <label for="Nombre">Nombre</label>
 <input type="text" name="Nombre" value="{{ isset($empleado->nombre)?$empleado->nombre:'' }}" id="Nombre"><br><br>
 
@@ -18,4 +21,6 @@
 @endif
 <input type="file" name="Foto" value="" id="Foto"><br><br>
 
-<input type="submit" value="Guardar Datos"><br>
+<input type="submit" value="{{ $modo }} Datos">
+
+<a href="{{ url('empleado/') }}">Regresar</a><br>
