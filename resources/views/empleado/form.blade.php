@@ -18,9 +18,9 @@
 
 <div class="form-group">
 
-    <label for="Nombre">Nombre</label>
-    <input type="text" class="form-control" name="Nombre"
-        value="{{ isset($empleado->nombre)?$empleado->nombre: old('nombre') }}" id="Nombre">
+    <label for="nombre">Nombre</label>
+    <input type="text" class="form-control" name="nombre"
+        value="{{ isset($empleado->nombre)?$empleado->nombre: old('nombre') }}" id="nombre">
 </div>
 
 <div class="form-group">
@@ -41,19 +41,19 @@
 
 <div class="form-group">
 
-    <label for="Correo">Correo</label>
-    <input type="email" class="form-control" name="Correo"
-        value="{{ isset($empleado->correo)?$empleado->correo:old('correo') }}" id="Correo">
+    <label for="correo">Correo</label>
+    <input type="email" class="form-control" name="correo"
+        value="{{ isset($empleado->correo)?$empleado->correo:old('correo') }}" id="correo">
 </div>
 
 <div class="form-group">
 
-    <label for="Foto"></label>
+    <label for="foto"></label>
     @if(isset($empleado->foto))
     <img class="img-thumbnail img-fluid" width="100px" src="{{ asset('storage').'/'.$empleado->foto}}"
         alt="foto-perfil">
     @endif
-    <input type="file" class="form-control" name="Foto" value="" id="Foto"><br>
+    <input type="file" class="form-control" name="foto" value="" id="foto"><br>
 </div>
 
 <input class="btn btn-success" type="submit" value="{{ $modo }} Datos">
