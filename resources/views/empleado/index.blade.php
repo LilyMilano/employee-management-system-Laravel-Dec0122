@@ -7,7 +7,7 @@
     {{ Session::get('mensaje') }}
     @endif
 
-    <a href="{{ url('empleado/create') }}">Registrar nuevo empleado</a>
+    <a href="{{ url('empleado/create') }}" class="btn btn-success">Registrar nuevo empleado</a><br><br>
 
     <table class="table table-light">
         <thead class="thead-light">
@@ -26,19 +26,21 @@
             <tr>
                 <td>{{ $empleado->id }}</td>
                 <td>
-                    <img width=" 100px" src="{{ asset('storage').'/'.$empleado->foto}}" alt="foto-perfil">
+                    <img class="img-thumbnail img-fluid" width=" 100px" src="{{ asset('storage').'/'.$empleado->foto}}"
+                        alt="foto-perfil">
                 </td>
                 <td>{{ $empleado->nombre }}</td>
                 <td>{{ $empleado->apellidoPaterno }}</td>
                 <td>{{ $empleado->apellidoMaterno }}</td>
                 <td>{{ $empleado->correo }}</td>
                 <td>
-                    <a href=" {{ url('/empleado/'.$empleado->id.'/edit') }}">Editar</a>
+                    <a href=" {{ url('/empleado/'.$empleado->id.'/edit') }}" class="btn btn-warning">Editar</a>
                     |
-                    <form action="{{ url('/empleado/'.$empleado->id )}}" method="post">
+                    <form action="{{ url('/empleado/'.$empleado->id )}}" class="d-inline" method="post">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <input type="submit" onclick="return confirm('¿Desea confirmar el borrado?' )" value="Borrar">
+                        <input class="btn btn-danger" type="submit"
+                            onclick="return confirm('¿Desea confirmar el borrado?' )" value="Borrar">
                     </form>
                 </td>
             </tr>
