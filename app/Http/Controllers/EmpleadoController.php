@@ -16,7 +16,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         //
-        $datos['empleados']=Empleado::paginate(5);
+        $datos['empleados']=Empleado::paginate(1);
         return view('empleado.index',$datos);
     }
 
@@ -103,6 +103,31 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        //Default values:
+        
+        $campos=[
+            'nombre'=> 'required|string|max:100',
+            'apellidoPaterno'=> 'required|string|max:100',
+            'apellidoMaterno'=> 'required|string|max:100',
+            'correo'=> 'required|email',
+        ];
+        
+        // Mensaje de error campo vacío
+        $mensaje=[
+            'required'=>'El :attribute es requerido'
+        ];
+
+        //En caso de adjuntar foto:
+        
+        if($request->hasFile('foto')){
+            $campos=['foto'=> 'required|max:10000|mimes:jpeg,png,jpg'];
+            $mensaje=['foto.required'=>'La foto es requerida'];
+        }
+
+        $this->validate($request, $campos, $mensaje);
+
+        
         //
         $datosEmpleado = request()->except(['_token','_method']);
 
@@ -114,8 +139,8 @@ class EmpleadoController extends Controller
         
         Empleado::where('id','=',$id)->update($datosEmpleado);
         $empleado=Empleado::findOrFail($id);
-        return view('empleado.edit', compact('empleado'));
-
+        //return view('empleado.edit', compact('empleado'));
+        return redirect('empleado')->with('mensaje','Empleado Modificado');
 
     }
 
