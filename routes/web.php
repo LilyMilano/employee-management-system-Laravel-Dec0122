@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 
@@ -35,7 +36,10 @@ Route::post('empleado/create', [EmpleadoController::class, 'create']);
 */
 
 Route::resource('empleado', EmpleadoController::class)->middleware('auth');
-Auth::routes(['register'=>false, 'reset'=>false]);
+
+// Auth::routes(['register'=>false, 'reset'=>false]);
+
+Auth::routes(['reset'=>false]);
 
 Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
 
